@@ -6,9 +6,9 @@
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   if (window.scrollY > 60) {
-    navbar.style.background = 'rgba(13,13,13,0.97)';
+    navbar.classList.add('scrolled');
   } else {
-    navbar.style.background = 'rgba(13,13,13,0.85)';
+    navbar.classList.remove('scrolled');
   }
 });
 
@@ -28,11 +28,10 @@ hamburger?.addEventListener('click', () => {
   }
 });
 
-// Close nav when a link is clicked
 navLinks?.querySelectorAll('.nav-link').forEach(link => {
   link.addEventListener('click', () => {
     navLinks.classList.remove('open');
-    hamburger.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+    hamburger?.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
   });
 });
 
@@ -53,7 +52,6 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     const filter = btn.dataset.filter;
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-
     document.querySelectorAll('.gallery-item').forEach(item => {
       if (filter === 'all' || item.dataset.category === filter) {
         item.classList.remove('hidden');
@@ -71,7 +69,6 @@ document.querySelectorAll('.like-btn').forEach(btn => {
     const icon  = btn.querySelector('i');
     const parts = btn.textContent.trim().split(/\s+/);
     const count = parseInt(parts[parts.length - 1]) || 0;
-
     if (btn.dataset.liked === 'true') {
       btn.dataset.liked = 'false';
       icon.style.color  = '';
@@ -101,23 +98,28 @@ const revealObserver = new IntersectionObserver((entries) => {
       revealObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.12 });
+}, { threshold: 0.1 });
 
 document.querySelectorAll(
-  '.feature-card, .review-card, .stat-card, .menu-card, .team-card, .value-card, .gallery-item, .info-card'
+  '.feature-card, .review-card, .stat-card, .menu-card, .team-card, .value-card, .gallery-item, .info-card, .founder-card'
 ).forEach(el => {
-  el.style.opacity    = '0';
-  el.style.transform  = 'translateY(24px)';
-  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  el.classList.add('reveal');
   revealObserver.observe(el);
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  // add revealed class styles via JS since CSS classes can't transition from JS-set initial state
-  const style = document.createElement('style');
-  style.textContent = `.revealed { opacity: 1 !important; transform: translateY(0) !important; }`;
-  document.head.appendChild(style);
-});
+// ---------- Menu Tabs ----------
+const menuTabs = document.querySelectorAll('.menu-tab');
+if (menuTabs.length) {
+  menuTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      menuTabs.forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      const panel = document.getElementById('tab-' + tab.dataset.tab);
+      if (panel) panel.classList.add('active');
+    });
+  });
+}
 
 // ---------- Smooth active nav on scroll (homepage) ----------
 const sections = document.querySelectorAll('section[id]');
@@ -126,11 +128,10 @@ if (sections.length > 0) {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-        const match = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+        const match = document.querySelector(`.nav-link[href*="${entry.target.id}"]`);
         match?.classList.add('active');
       }
     });
   }, { rootMargin: '-40% 0px -55% 0px' });
-
   sections.forEach(s => navObserver.observe(s));
 }

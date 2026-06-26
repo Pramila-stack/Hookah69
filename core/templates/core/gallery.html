@@ -12,8 +12,9 @@
 
 <section class="gallery-section">
     <div class="section-header">
-        <h2>Ambience & <span class="gold">Atmosphere</span></h2>
-        <p>Step inside — every corner tells a story of luxury and warmth.</p>
+        <p class="section-eyebrow">Ambience &amp; Atmosphere</p>
+        <h2 class="section-title">Step Inside Our <span class="gold">World</span></h2>
+        <p class="section-subtitle">Every corner tells a story of luxury, warmth, and unforgettable evenings.</p>
     </div>
 
     <div class="gallery-filter">
@@ -22,72 +23,30 @@
         <button class="filter-btn" data-filter="hookah">Hookah</button>
         <button class="filter-btn" data-filter="drinks">Drinks</button>
         <button class="filter-btn" data-filter="events">Events</button>
+        <button class="filter-btn" data-filter="food">Food</button>
+        <button class="filter-btn" data-filter="cafe">Café</button>
     </div>
 
     <div class="gallery-grid" id="galleryGrid">
-        <div class="gallery-item" data-category="lounge">
-            <div class="gallery-placeholder lounge-1">
-                <i class="fas fa-couch"></i>
-                <span>Premium Lounge Area</span>
+        {% for img in images %}
+        <div class="gallery-item {% if img.is_large %}large{% endif %}" data-category="{{ img.category }}">
+            <img class="gallery-img" src="{{ img.image_url }}" alt="{{ img.title }}" loading="lazy" />
+            <div class="gallery-overlay">
+                <span class="gallery-overlay-cat">{{ img.category|capfirst }}</span>
+                <span class="gallery-overlay-label">{{ img.title }}</span>
             </div>
         </div>
-        <div class="gallery-item large" data-category="hookah">
-            <div class="gallery-placeholder hookah-1">
-                <i class="fas fa-fire"></i>
-                <span>Signature Hookah Setup</span>
-            </div>
-        </div>
-        <div class="gallery-item" data-category="drinks">
-            <div class="gallery-placeholder drinks-1">
-                <i class="fas fa-cocktail"></i>
-                <span>Cocktail Crafting</span>
-            </div>
-        </div>
-        <div class="gallery-item" data-category="lounge">
-            <div class="gallery-placeholder lounge-2">
-                <i class="fas fa-lightbulb"></i>
-                <span>Ambient Lighting</span>
-            </div>
-        </div>
-        <div class="gallery-item" data-category="events">
-            <div class="gallery-placeholder events-1">
-                <i class="fas fa-music"></i>
-                <span>Live Music Night</span>
-            </div>
-        </div>
-        <div class="gallery-item large" data-category="lounge">
-            <div class="gallery-placeholder lounge-3">
-                <i class="fas fa-crown"></i>
-                <span>VIP Private Lounge</span>
-            </div>
-        </div>
-        <div class="gallery-item" data-category="hookah">
-            <div class="gallery-placeholder hookah-2">
-                <i class="fas fa-leaf"></i>
-                <span>Fruit-Based Flavors</span>
-            </div>
-        </div>
-        <div class="gallery-item" data-category="drinks">
-            <div class="gallery-placeholder drinks-2">
-                <i class="fas fa-wine-glass"></i>
-                <span>Premium Selection</span>
-            </div>
-        </div>
-        <div class="gallery-item" data-category="events">
-            <div class="gallery-placeholder events-2">
-                <i class="fas fa-birthday-cake"></i>
-                <span>Private Events</span>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </section>
 
 <section class="cta-section">
     <div class="cta-overlay"></div>
     <div class="cta-content">
+        <p class="section-eyebrow">Create Your Memories</p>
         <h2>Want to <span class="gold">Experience This?</span></h2>
         <p>Reserve your table and create your own memories at Hookah69.</p>
-        <a href="{% url 'reserve' %}" class="btn btn-gold btn-lg">Reserve Now</a>
+        <a href="{% url 'reserve' %}" class="btn btn-orange btn-lg">Reserve Now</a>
     </div>
 </section>
 {% endblock %}

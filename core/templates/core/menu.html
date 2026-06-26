@@ -1,126 +1,384 @@
 {% extends 'core/base.html' %}
+{% load static %}
+
 {% block title %}Menu — Hookah69 Premium Bar{% endblock %}
+
 {% block content %}
+
+<!-- ===== MENU HERO ===== -->
 <section class="page-hero">
-    <div class="page-hero-overlay"></div>
     <div class="page-hero-content">
-        <p class="section-eyebrow">Our Offerings</p>
-        <h1>The <span class="gold">Menu</span></h1>
-        <p>Flavors crafted for the connoisseur</p>
+        <div class="section-badge"><i class="fas fa-utensils"></i> Our Menu <i class="fas fa-utensils"></i></div>
+        <h1>Explore Our <span class="gold">Flavors</span></h1>
+        <p>From premium hookahs to handcrafted cocktails, gourmet food to artisan café beverages — experience every sense.</p>
     </div>
 </section>
 
+<!-- ===== MENU TABS ===== -->
 <section class="menu-section">
-    <div class="menu-tabs">
-        <button class="tab-btn active" data-tab="hookah">🌿 Hookah</button>
-        <button class="tab-btn" data-tab="drinks">🍹 Drinks</button>
-        <button class="tab-btn" data-tab="food">🍽️ Food</button>
-    </div>
+    <div class="menu-container">
 
-    <!-- HOOKAH -->
-    <div class="tab-content active" id="hookah">
-        <div class="section-header">
-            <h2>Premium <span class="gold">Hookah Flavors</span></h2>
-            <p>50+ flavors using fresh fruits, ice bases, and premium tobacco blends</p>
+        <!-- Tab Nav -->
+        <div class="menu-tabs" id="menuTabs">
+            <button class="menu-tab active" data-tab="smoke"><i class="fas fa-fire"></i><span>Hookah</span></button>
+            <button class="menu-tab" data-tab="mocktails"><i class="fas fa-blender"></i><span>Mocktails</span></button>
+            <button class="menu-tab" data-tab="cocktails"><i class="fas fa-cocktail"></i><span>Cocktails</span></button>
+            <button class="menu-tab" data-tab="bar"><i class="fas fa-wine-bottle"></i><span>Bar</span></button>
+            <button class="menu-tab" data-tab="cafe"><i class="fas fa-coffee"></i><span>Café</span></button>
+            <button class="menu-tab" data-tab="food"><i class="fas fa-hamburger"></i><span>Food</span></button>
         </div>
-        {% if hookah_items %}
-        <div class="menu-grid">
-            {% for item in hookah_items %}
-            <div class="menu-card">
-                <div class="menu-card-icon">🌿</div>
-                <div class="menu-card-info">
-                    <h4>{{ item.name }}</h4>
-                    <p>{{ item.description }}</p>
-                </div>
-                <span class="menu-price">Rs. {{ item.price }}</span>
-            </div>
-            {% endfor %}
-        </div>
-        {% else %}
-        <div class="menu-grid">
-            {% for item in hookah_defaults %}
-            <div class="menu-card">
-                <div class="menu-card-icon">🌿</div>
-                <div class="menu-card-info">
-                    <h4>{{ item.name }}</h4>
-                    <p>{{ item.desc }}</p>
-                </div>
-                <span class="menu-price">Rs. {{ item.price }}</span>
-            </div>
-            {% endfor %}
-        </div>
-        {% endif %}
-    </div>
 
-    <!-- DRINKS -->
-    <div class="tab-content" id="drinks">
-        <div class="section-header">
-            <h2>Signature <span class="gold">Cocktails & Drinks</span></h2>
-            <p>20+ premium drinks crafted by our master mixologists</p>
-        </div>
-        {% if drink_items %}
-        <div class="menu-grid">
-            {% for item in drink_items %}
-            <div class="menu-card">
-                <div class="menu-card-icon">🍹</div>
-                <div class="menu-card-info">
-                    <h4>{{ item.name }}</h4>
-                    <p>{{ item.description }}</p>
-                </div>
-                <span class="menu-price">Rs. {{ item.price }}</span>
+        <!-- ───── HOOKAH / SMOKE ───── -->
+        <div class="menu-panel active" id="tab-smoke">
+            <div class="panel-header">
+                <div class="section-badge"><i class="fas fa-fire"></i> Signature Smoke</div>
+                <h2 class="panel-title">Premium <span class="gold">Hookah</span> Experience</h2>
+                <p class="panel-sub">Handcrafted hookah sessions with the finest tobacco blends and fresh fruit bases</p>
             </div>
-            {% endfor %}
+            <div class="smoke-grid">
+                {% for item in smoke_items %}
+                <div class="smoke-card{% if item.badge == 'PREMIUM' %} smoke-card--premium{% endif %}">
+                    <div class="smoke-icon">{{ item.icon }}</div>
+                    {% if item.badge %}<span class="item-badge item-badge--{{ item.badge|lower }}">{{ item.badge }}</span>{% endif %}
+                    <h3 class="smoke-name">{{ item.name }}</h3>
+                    <p class="smoke-desc">{{ item.desc }}</p>
+                    <div class="smoke-price">Rs. {{ item.price }}</div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="menu-note"><i class="fas fa-info-circle"></i> All hookah sessions include coal service &amp; setup. Add-ons available at the counter.</div>
         </div>
-        {% else %}
-        <div class="menu-grid">
-            <div class="menu-card"><div class="menu-card-icon">🍹</div><div class="menu-card-info"><h4>Hookah69 Signature</h4><p>House blend cocktail with local spirits and fresh herbs</p></div><span class="menu-price">Rs. 650</span></div>
-            <div class="menu-card"><div class="menu-card-icon">🍹</div><div class="menu-card-info"><h4>Mountain Mule</h4><p>Ginger beer, vodka, lime, and Himalayan mint</p></div><span class="menu-price">Rs. 550</span></div>
-            <div class="menu-card"><div class="menu-card-icon">🍹</div><div class="menu-card-info"><h4>Jungle Juice</h4><p>Tropical fruit punch with premium rum</p></div><span class="menu-price">Rs. 500</span></div>
-            <div class="menu-card"><div class="menu-card-icon">🍺</div><div class="menu-card-info"><h4>Premium Beers</h4><p>Selection of local and imported beers</p></div><span class="menu-price">Rs. 350</span></div>
-            <div class="menu-card"><div class="menu-card-icon">🥃</div><div class="menu-card-info"><h4>Whiskey Selection</h4><p>Single malt, blended Scotch, and bourbon options</p></div><span class="menu-price">Rs. 800</span></div>
-            <div class="menu-card"><div class="menu-card-icon">🥤</div><div class="menu-card-info"><h4>Mocktails</h4><p>Refreshing non-alcoholic blends for every palate</p></div><span class="menu-price">Rs. 350</span></div>
-        </div>
-        {% endif %}
-    </div>
 
-    <!-- FOOD -->
-    <div class="tab-content" id="food">
-        <div class="section-header">
-            <h2>Gourmet <span class="gold">Small Plates</span></h2>
-            <p>Curated bites designed to pair perfectly with your hookah experience</p>
-        </div>
-        {% if food_items %}
-        <div class="menu-grid">
-            {% for item in food_items %}
-            <div class="menu-card">
-                <div class="menu-card-icon">🍽️</div>
-                <div class="menu-card-info">
-                    <h4>{{ item.name }}</h4>
-                    <p>{{ item.description }}</p>
-                </div>
-                <span class="menu-price">Rs. {{ item.price }}</span>
+        <!-- ───── MOCKTAILS ───── -->
+        <div class="menu-panel" id="tab-mocktails">
+            <div class="panel-header">
+                <div class="section-badge"><i class="fas fa-blender"></i> Signature Mocktails</div>
+                <h2 class="panel-title">Non-Alcoholic <span class="gold">Creations</span></h2>
+                <p class="panel-sub">Artisan mocktails crafted with fresh fruits, syrups, and premium ingredients</p>
             </div>
-            {% endfor %}
+            <div class="drinks-grid">
+                {% for item in mocktail_items %}
+                <div class="drink-card">
+                    {% if item.badge %}<span class="item-badge item-badge--{{ item.badge|lower }}">{{ item.badge }}</span>{% endif %}
+                    <div class="drink-emoji">{{ item.icon }}</div>
+                    <h3 class="drink-name">{{ item.name }}</h3>
+                    {% if item.quote %}<p class="drink-quote">"{{ item.quote }}"</p>{% endif %}
+                    <p class="drink-desc">{{ item.desc }}</p>
+                    <div class="drink-footer">
+                        <span class="drink-price">Rs. {{ item.price }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
-        {% else %}
-        <div class="menu-grid">
-            <div class="menu-card"><div class="menu-card-icon">🍽️</div><div class="menu-card-info"><h4>Mezze Platter</h4><p>Hummus, pita, olives, falafel, and seasonal dips</p></div><span class="menu-price">Rs. 750</span></div>
-            <div class="menu-card"><div class="menu-card-icon">🍽️</div><div class="menu-card-info"><h4>Crispy Calamari</h4><p>Golden fried squid with lemon aioli</p></div><span class="menu-price">Rs. 600</span></div>
-            <div class="menu-card"><div class="menu-card-icon">🍽️</div><div class="menu-card-info"><h4>Chicken Wings</h4><p>Glazed with our secret house sauce, served with ranch</p></div><span class="menu-price">Rs. 650</span></div>
-            <div class="menu-card"><div class="menu-card-icon">🍽️</div><div class="menu-card-info"><h4>Truffle Fries</h4><p>Crispy fries with truffle oil, parmesan, and herbs</p></div><span class="menu-price">Rs. 450</span></div>
-            <div class="menu-card"><div class="menu-card-icon">🍽️</div><div class="menu-card-info"><h4>Sliders Board</h4><p>Mini beef and chicken sliders with gourmet toppings</p></div><span class="menu-price">Rs. 850</span></div>
-            <div class="menu-card"><div class="menu-card-icon">🍽️</div><div class="menu-card-info"><h4>Bruschetta</h4><p>Toasted sourdough with fresh tomato, basil, and mozzarella</p></div><span class="menu-price">Rs. 400</span></div>
+
+        <!-- ───── COCKTAILS ───── -->
+        <div class="menu-panel" id="tab-cocktails">
+            <div class="panel-header">
+                <div class="section-badge"><i class="fas fa-cocktail"></i> Signature Cocktails</div>
+                <h2 class="panel-title">Crafted with <span class="gold">Passion</span></h2>
+                <p class="panel-sub">Premium spirits blended with local and international flavors by our master mixologists</p>
+            </div>
+            <div class="drinks-grid">
+                {% for item in cocktail_items %}
+                <div class="drink-card drink-card--cocktail">
+                    {% if item.badge %}<span class="item-badge item-badge--{{ item.badge|lower }}">{{ item.badge }}</span>{% endif %}
+                    <div class="drink-emoji">{{ item.icon }}</div>
+                    <h3 class="drink-name">{{ item.name }}</h3>
+                    {% if item.quote %}<p class="drink-quote">"{{ item.quote }}"</p>{% endif %}
+                    <p class="drink-desc">{{ item.desc }}</p>
+                    <div class="drink-footer">
+                        <span class="drink-price">Rs. {{ item.price }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
-        {% endif %}
+
+        <!-- ───── BAR ───── -->
+        <div class="menu-panel" id="tab-bar">
+            <div class="panel-header">
+                <div class="section-badge"><i class="fas fa-wine-bottle"></i> Bar Menu</div>
+                <h2 class="panel-title">Premium <span class="gold">Spirits &amp; More</span></h2>
+                <p class="panel-sub">A curated selection of spirits, wines, shots, and beers for every taste</p>
+            </div>
+
+            <div class="bar-section">
+                <div class="bar-section-title"><i class="fas fa-glass-whiskey"></i> Spirits</div>
+                <div class="table-wrap">
+                    <table class="menu-table">
+                        <thead>
+                            <tr><th>Name</th><th class="text-right">30 ml</th><th class="text-right">750 ml</th></tr>
+                        </thead>
+                        <tbody>
+                            {% for item in spirits %}
+                            <tr>
+                                <td class="item-name-cell">{{ item.name }}</td>
+                                <td class="text-right price-cell">Rs. {{ item.price30 }}</td>
+                                <td class="text-right price-cell gold">Rs. {{ item.price750 }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="bar-section">
+                <div class="bar-section-title"><i class="fas fa-wine-glass-alt"></i> Wine</div>
+                <div class="table-wrap">
+                    <table class="menu-table">
+                        <thead>
+                            <tr><th>Name</th><th class="text-right">Glass</th><th class="text-right">Bottle</th></tr>
+                        </thead>
+                        <tbody>
+                            {% for item in wines %}
+                            <tr>
+                                <td class="item-name-cell">{{ item.name }}</td>
+                                <td class="text-right price-cell">Rs. {{ item.glass }}</td>
+                                <td class="text-right price-cell gold">Rs. {{ item.bottle }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="bar-two-col">
+                <div class="bar-section">
+                    <div class="bar-section-title"><i class="fas fa-glass-martini-alt"></i> Shots</div>
+                    <div class="simple-list">
+                        {% for item in shots %}
+                        <div class="simple-row"><span>{{ item.name }}</span><span class="price-cell">Rs. {{ item.price }}</span></div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="bar-section">
+                    <div class="bar-section-title"><i class="fas fa-beer"></i> Beer</div>
+                    <div class="simple-list">
+                        {% for item in beers %}
+                        <div class="simple-row"><span>{{ item.name }}</span><span class="price-cell">Rs. {{ item.price }}</span></div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ───── CAFÉ ───── -->
+        <div class="menu-panel" id="tab-cafe">
+            <div class="panel-header">
+                <div class="section-badge"><i class="fas fa-coffee"></i> Café Menu</div>
+                <h2 class="panel-title">Artisan <span class="gold">Café</span> Beverages</h2>
+                <p class="panel-sub">Specialty coffees, teas, frappes, and refreshing cold drinks</p>
+            </div>
+
+            <div class="cafe-grid">
+                <div class="cafe-category">
+                    <div class="cafe-category-title"><i class="fas fa-coffee"></i> Espresso Based</div>
+                    <div class="simple-list">
+                        {% for item in cafe_espresso %}
+                        <div class="simple-row"><span>{{ item.name }}</span><span class="price-cell">Rs. {{ item.price }}</span></div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="cafe-category">
+                    <div class="cafe-category-title"><i class="fas fa-ice-cream"></i> Ice Espresso</div>
+                    <div class="simple-list">
+                        {% for item in cafe_ice_espresso %}
+                        <div class="simple-row"><span>{{ item.name }}</span><span class="price-cell">Rs. {{ item.price }}</span></div>
+                        {% endfor %}
+                    </div>
+                    <div class="cafe-category-title" style="margin-top:1.5rem;"><i class="fas fa-blender"></i> Frappes</div>
+                    <div class="simple-list">
+                        {% for item in frappes %}
+                        <div class="simple-row"><span>{{ item.name }}</span><span class="price-cell">Rs. {{ item.price }}</span></div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="cafe-category">
+                    <div class="cafe-category-title"><i class="fas fa-mug-hot"></i> Hot &amp; Cold Alternatives</div>
+                    <div class="simple-list">
+                        {% for item in cafe_alternatives %}
+                        <div class="simple-row"><span>{{ item.name }}</span><span class="price-cell">Rs. {{ item.price }}</span></div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="cafe-category">
+                    <div class="cafe-category-title"><i class="fas fa-glass-whiskey"></i> Milkshakes</div>
+                    <div class="simple-list">
+                        {% for item in milkshakes %}
+                        <div class="simple-row"><span>{{ item.name }}</span><span class="price-cell">Rs. {{ item.price }}</span></div>
+                        {% endfor %}
+                    </div>
+                    <div class="cafe-category-title" style="margin-top:1.5rem;"><i class="fas fa-glass-cheers"></i> Lassi</div>
+                    <div class="simple-list">
+                        {% for item in lassi %}
+                        <div class="simple-row"><span>{{ item.name }}</span><span class="price-cell">Rs. {{ item.price }}</span></div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="cafe-category">
+                    <div class="cafe-category-title">🍵 Matcha</div>
+                    <div class="simple-list">
+                        {% for item in matcha %}
+                        <div class="simple-row"><span>{{ item.name }}</span><span class="price-cell">Rs. {{ item.price }}</span></div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="cafe-category">
+                    <div class="cafe-category-title"><i class="fas fa-lemon"></i> Fresh Juices</div>
+                    <div class="simple-list">
+                        {% for item in juices %}
+                        <div class="simple-row"><span>{{ item.name }}</span><span class="price-cell">Rs. {{ item.price }}</span></div>
+                        {% endfor %}
+                    </div>
+                    <div class="cafe-category-title" style="margin-top:1.5rem;"><i class="fas fa-leaf"></i> Tea</div>
+                    <div class="simple-list">
+                        {% for item in tea %}
+                        <div class="simple-row"><span>{{ item.name }}</span><span class="price-cell">Rs. {{ item.price }}</span></div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ───── FOOD ───── -->
+        <div class="menu-panel" id="tab-food">
+            <div class="panel-header">
+                <div class="section-badge"><i class="fas fa-hamburger"></i> Food Menu</div>
+                <h2 class="panel-title">Gourmet <span class="gold">Kitchen</span></h2>
+                <p class="panel-sub">From light bites to full meals — all crafted fresh in our kitchen</p>
+            </div>
+
+            <div class="food-grid">
+                <div class="food-category">
+                    <div class="food-cat-title"><i class="fas fa-seedling"></i> Salads</div>
+                    <div class="simple-list">
+                        {% for item in food_salads %}
+                        <div class="simple-row"><span>{{ item.name }}</span><span class="price-cell">Rs. {{ item.price }}</span></div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="food-category">
+                    <div class="food-cat-title"><i class="fas fa-utensils"></i> Gravy with Rice</div>
+                    <div class="simple-list">
+                        {% for item in food_gravy %}
+                        <div class="simple-row"><span>{{ item.name }}</span><span class="price-cell">Rs. {{ item.price }}</span></div>
+                        {% endfor %}
+                    </div>
+                    <div class="food-cat-title" style="margin-top:1.5rem;">🍚 Rice Bowl</div>
+                    <div class="simple-list">
+                        {% for item in food_rice_bowl %}
+                        <div class="simple-row"><span>{{ item.name }}</span><span class="price-cell">Rs. {{ item.price }}</span></div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="food-category">
+                    <div class="food-cat-title"><i class="fas fa-leaf"></i> Veg Snacks</div>
+                    <div class="simple-list">
+                        {% for item in food_veg_snacks %}
+                        <div class="simple-row"><span>{{ item.name }}</span><span class="price-cell">Rs. {{ item.price }}</span></div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="food-category">
+                    <div class="food-cat-title"><i class="fas fa-drumstick-bite"></i> Non-Veg Snacks</div>
+                    <div class="simple-list">
+                        {% for item in food_nonveg_snacks %}
+                        <div class="simple-row"><span>{{ item.name }}</span><span class="price-cell">Rs. {{ item.price }}</span></div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="food-category">
+                    <div class="food-cat-title"><i class="fas fa-star"></i> Chef's Specials</div>
+                    <div class="simple-list">
+                        {% for item in food_special %}
+                        <div class="simple-row"><span>{{ item.name }}</span><span class="price-cell">Rs. {{ item.price }}</span></div>
+                        {% endfor %}
+                    </div>
+                    <div class="food-cat-title" style="margin-top:1.5rem;"><i class="fas fa-fire-alt"></i> Sizzler</div>
+                    <div class="simple-list">
+                        {% for item in food_sizzler %}
+                        <div class="simple-row"><span>{{ item.name }}</span><span class="price-cell">Rs. {{ item.price }}</span></div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="food-category">
+                    <div class="food-cat-title"><i class="fas fa-hamburger"></i> Burgers &amp; Sandwiches</div>
+                    <div class="simple-list">
+                        {% for item in food_burger %}
+                        <div class="simple-row"><span>{{ item.name }}</span><span class="price-cell">Rs. {{ item.price }}</span></div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="food-category">
+                    <div class="food-cat-title"><i class="fas fa-utensils"></i> Chowmien</div>
+                    <div class="simple-list">
+                        {% for item in food_chowmien %}
+                        <div class="simple-row"><span>{{ item.name }}</span><span class="price-cell">Rs. {{ item.price }}</span></div>
+                        {% endfor %}
+                    </div>
+                    <div class="food-cat-title" style="margin-top:1.5rem;">🍜 Noodles</div>
+                    <div class="simple-list">
+                        {% for item in food_noodles %}
+                        <div class="simple-row"><span>{{ item.name }}</span><span class="price-cell">Rs. {{ item.price }}</span></div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="food-category">
+                    <div class="food-cat-title"><i class="fas fa-pizza-slice"></i> Pizza <small class="size-note">(Small / Large)</small></div>
+                    <div class="simple-list">
+                        {% for item in food_pizza %}
+                        <div class="simple-row"><span>{{ item.name }}</span><span class="price-cell">Rs. {{ item.price }}</span></div>
+                        {% endfor %}
+                    </div>
+                    <div class="food-cat-title" style="margin-top:1.5rem;"><i class="fas fa-utensils"></i> Pasta</div>
+                    <div class="simple-list">
+                        {% for item in food_pasta %}
+                        <div class="simple-row"><span>{{ item.name }}</span><span class="price-cell">Rs. {{ item.price }}</span></div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="food-category food-category--wide">
+                    <div class="food-cat-title">🥟 MO:MO</div>
+                    <div class="table-wrap">
+                        <table class="menu-table">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th class="text-right">Steam</th>
+                                    <th class="text-right">Kothey</th>
+                                    <th class="text-right">Jhol</th>
+                                    <th class="text-right">Chilly</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in food_momo %}
+                                <tr>
+                                    <td class="item-name-cell">{{ item.name }}</td>
+                                    <td class="text-right price-cell">Rs. {{ item.steam }}</td>
+                                    <td class="text-right price-cell">Rs. {{ item.kothey }}</td>
+                                    <td class="text-right price-cell">Rs. {{ item.jhol }}</td>
+                                    <td class="text-right price-cell gold">Rs. {{ item.chilly }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </section>
 
 <section class="cta-section">
     <div class="cta-overlay"></div>
     <div class="cta-content">
-        <h2>Ready to <span class="gold">Indulge?</span></h2>
-        <p>Reserve your table and enjoy these flavors tonight.</p>
-        <a href="{% url 'reserve' %}" class="btn btn-gold btn-lg">Book Your Table</a>
+        <div class="section-badge" style="justify-content:center;display:inline-flex;"><i class="fas fa-calendar-check"></i> Reserve a Table</div>
+        <h2>Ready to <span class="gold">Experience It All?</span></h2>
+        <p>Book your table and enjoy the full Hookah69 experience tonight.</p>
+        <a href="{% url 'reserve' %}" class="btn btn-orange btn-lg">Reserve Now</a>
     </div>
 </section>
+
 {% endblock %}

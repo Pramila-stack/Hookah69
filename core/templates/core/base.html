@@ -7,7 +7,7 @@
     <title>{% block title %}Hookah69 Premium Bar — Kathmandu{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'core/css/style.css' %}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 </head>
 <body>
 
@@ -15,20 +15,22 @@
 <nav class="navbar" id="navbar">
     <div class="nav-container">
         <a href="{% url 'index' %}" class="nav-logo">
-            <span class="logo-icon">🌿</span>
+            <div class="logo-icon-wrap">
+                <i class="fas fa-fire logo-icon"></i>
+            </div>
             <div class="logo-text">
-                <span class="logo-main">HOOKAH69</span>
-                <span class="logo-sub">PREMIUM BAR</span>
+                <span class="logo-main">HOOKAH<span>69</span></span>
+                <span class="logo-sub">Premium Bar</span>
             </div>
         </a>
 
         <ul class="nav-links" id="navLinks">
-            <li><a href="{% url 'index' %}" class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}">Home</a></li>
-            <li><a href="{% url 'gallery' %}" class="nav-link {% if request.resolver_match.url_name == 'gallery' %}active{% endif %}">Gallery</a></li>
-            <li><a href="{% url 'menu' %}" class="nav-link {% if request.resolver_match.url_name == 'menu' %}active{% endif %}">Menu</a></li>
-            <li><a href="{% url 'team' %}" class="nav-link {% if request.resolver_match.url_name == 'team' %}active{% endif %}">Team</a></li>
-            <li><a href="{% url 'contact' %}" class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a></li>
-            <li><a href="{% url 'about' %}" class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}">About Us</a></li>
+            <li><a href="{% url 'index' %}" class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="{% url 'gallery' %}" class="nav-link {% if request.resolver_match.url_name == 'gallery' %}active{% endif %}"><i class="fas fa-images"></i> Gallery</a></li>
+            <li><a href="{% url 'menu' %}" class="nav-link {% if request.resolver_match.url_name == 'menu' %}active{% endif %}"><i class="fas fa-utensils"></i> Menu</a></li>
+            <li><a href="{% url 'team' %}" class="nav-link {% if request.resolver_match.url_name == 'team' %}active{% endif %}"><i class="fas fa-users"></i> Team</a></li>
+            <li><a href="{% url 'contact' %}" class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}"><i class="fas fa-phone"></i> Contact</a></li>
+            <li><a href="{% url 'about' %}" class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}"><i class="fas fa-info-circle"></i> About-Us</a></li>
         </ul>
 
         <div class="nav-right">
@@ -37,7 +39,8 @@
                 <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 <a href="#" class="social-icon" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
             </div>
-            <a href="{% url 'reserve' %}" class="btn btn-gold">Reserve Now</a>
+            <div class="nav-divider"></div>
+            <a href="{% url 'reserve' %}" class="btn btn-orange"><i class="fas fa-user-friends"></i> Reserve Now</a>
         </div>
 
         <button class="hamburger" id="hamburger" aria-label="Toggle menu">
@@ -66,10 +69,12 @@
     <div class="footer-container">
         <div class="footer-brand">
             <a href="{% url 'index' %}" class="nav-logo footer-logo">
-                <span class="logo-icon">🌿</span>
+                <div class="logo-icon-wrap">
+                    <i class="fas fa-fire logo-icon"></i>
+                </div>
                 <div class="logo-text">
-                    <span class="logo-main">HOOKAH69</span>
-                    <span class="logo-sub">PREMIUM BAR</span>
+                    <span class="logo-main">HOOKAH<span>69</span></span>
+                    <span class="logo-sub">Premium Bar</span>
                 </div>
             </a>
             <p class="footer-tagline">Where flavors meet the mountains. Experience the finest hookah lounge in the heart of Kathmandu.</p>
@@ -113,7 +118,7 @@
 
     <div class="footer-bottom">
         <p>© 2026 Hookah69 Premium Bar. All rights reserved.</p>
-        <p>Designed by <span class="gold">Nexqbyte</span></p>
+        <p>Designed by <span class="orange">Nexqbyte</span></p>
     </div>
 </footer>
 
