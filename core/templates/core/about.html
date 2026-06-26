@@ -1,0 +1,77 @@
+{% extends 'core/base.html' %}
+{% block title %}About Us — Hookah69 Premium Bar{% endblock %}
+{% block content %}
+<section class="page-hero">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+        <p class="section-eyebrow">Our Story</p>
+        <h1>About <span class="gold">Hookah69</span></h1>
+        <p>Born in Kathmandu. Built for the extraordinary.</p>
+    </div>
+</section>
+
+<section class="about-section">
+    <div class="about-grid">
+        <div class="about-text">
+            <p class="section-eyebrow">Since 2023</p>
+            <h2>More Than a Lounge — <span class="gold">A Lifestyle</span></h2>
+            <p>Hookah69 Premium Bar was founded in 2023 with a single mission: to bring an unparalleled hookah and lounge experience to the heart of Kathmandu. Nestled at Greenland Chowk, we have quickly become the city's most sought-after destination for those who appreciate quality, ambience, and exceptional service.</p>
+            <p>Our team of dedicated hookah masters, mixologists, and hospitality professionals work tirelessly to ensure that every guest leaves with memories they'll treasure. Whether you're joining us for a quiet evening, a celebration, or a VIP gathering, Hookah69 is your home away from home.</p>
+            <p>With 50+ premium flavors, 20+ signature cocktails, live music on weekends, and private VIP lounges, we offer an experience that truly sets us apart. We believe every evening should be extraordinary — and at Hookah69, that's not just a promise, it's our standard.</p>
+            <div class="about-stats">
+                <div class="a-stat"><span class="gold">2023</span><small>Established</small></div>
+                <div class="a-stat"><span class="gold">10K+</span><small>Happy Guests</small></div>
+                <div class="a-stat"><span class="gold">8</span><small>Industry Awards</small></div>
+                <div class="a-stat"><span class="gold">5+</span><small>Years of Hospitality Expertise</small></div>
+            </div>
+        </div>
+        <div class="about-visual">
+            <div class="about-img-box">
+                <div class="about-img-placeholder">
+                    <i class="fas fa-glass-cheers"></i>
+                    <p>Hookah69 Premium Bar</p>
+                    <small>Kathmandu, Nepal</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="values-section">
+    <div class="section-header">
+        <p class="section-eyebrow">What We Stand For</p>
+        <h2>Our Core <span class="gold">Values</span></h2>
+    </div>
+    <div class="values-grid">
+        <div class="value-card">
+            <i class="fas fa-gem gold"></i>
+            <h4>Premium Quality</h4>
+            <p>We never compromise. From tobacco blends to cocktail spirits, only the finest ingredients make it to your table.</p>
+        </div>
+        <div class="value-card">
+            <i class="fas fa-heart gold"></i>
+            <h4>Guest-First</h4>
+            <p>Every decision we make starts and ends with one question: will this make our guests' experience better?</p>
+        </div>
+        <div class="value-card">
+            <i class="fas fa-leaf gold"></i>
+            <h4>Authenticity</h4>
+            <p>Our flavors, our music, our atmosphere — everything is genuine and crafted with intention and passion.</p>
+        </div>
+        <div class="value-card">
+            <i class="fas fa-shield-alt gold"></i>
+            <h4>Safe & Inclusive</h4>
+            <p>Hookah69 is a welcoming space for everyone. We maintain a safe, respectful, and inclusive environment always.</p>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="cta-overlay"></div>
+    <div class="cta-content">
+        <h2>Be Part of <span class="gold">Our Story</span></h2>
+        <p>Join thousands of happy guests who call Hookah69 their favorite spot in Kathmandu.</p>
+        <a href="{% url 'reserve' %}" class="btn btn-gold btn-lg">Reserve Your Table</a>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'core/base.html' %}
+{% block title %}Our Team — Hookah69 Premium Bar{% endblock %}
+{% block content %}
+<section class="page-hero">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+        <p class="section-eyebrow">The People Behind the Magic</p>
+        <h1>Our <span class="gold">Team</span></h1>
+        <p>Passionate professionals dedicated to your perfect evening</p>
+    </div>
+</section>
+
+<section class="team-section-full">
+    <div class="section-header">
+        <h2>Meet the <span class="gold">Hookah69 Family</span></h2>
+        <p>Every member of our team is handpicked for their passion, expertise, and commitment to excellence.</p>
+    </div>
+
+    <div class="team-grid">
+        <!-- Founder -->
+        <div class="team-card founder">
+            <div class="team-avatar">RT</div>
+            <div class="team-badge">Founder & CEO</div>
+            <h3>Rajan Thapa</h3>
+            <p>Visionary behind Hookah69 with 7+ years in premium hospitality. Rajan has transformed the Kathmandu nightlife scene with his uncompromising focus on quality and experience.</p>
+            <div class="team-stats-row">
+                <div class="t-stat"><span>7+</span><small>Yrs Exp.</small></div>
+                <div class="t-stat"><span>8</span><small>Awards</small></div>
+                <div class="t-stat"><span>1</span><small>Branch</small></div>
+            </div>
+            <div class="team-links">
+                <a href="mailto:rajan@hookah69.com"><i class="fas fa-envelope"></i></a>
+                <a href="tel:+9779812345678"><i class="fas fa-phone"></i></a>
+            </div>
+        </div>
+
+        <!-- Head Hookah Master -->
+        <div class="team-card">
+            <div class="team-avatar">KS</div>
+            <div class="team-badge">Head Hookah Master</div>
+            <h3>Kamal Shrestha</h3>
+            <p>Kamal's expertise in blending flavors and crafting the perfect hookah session is second to none. He personally trains every hookah attendant at Hookah69.</p>
+            <div class="team-stats-row">
+                <div class="t-stat"><span>5+</span><small>Yrs Exp.</small></div>
+                <div class="t-stat"><span>50+</span><small>Flavors</small></div>
+            </div>
+            <div class="team-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+
+        <!-- Head Mixologist -->
+        <div class="team-card">
+            <div class="team-avatar">PM</div>
+            <div class="team-badge">Head Mixologist</div>
+            <h3>Priya Maharjan</h3>
+            <p>Priya crafts every signature cocktail with precision and artistry. Her cocktail menu has won the lounge multiple lifestyle awards.</p>
+            <div class="team-stats-row">
+                <div class="t-stat"><span>4+</span><small>Yrs Exp.</small></div>
+                <div class="t-stat"><span>20+</span><small>Cocktails</small></div>
+            </div>
+            <div class="team-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+
+        <!-- Events Manager -->
+        <div class="team-card">
+            <div class="team-avatar">BS</div>
+            <div class="team-badge">Events Manager</div>
+            <h3>Bikash Subedi</h3>
+            <p>Bikash coordinates all live music nights, private events, and VIP bookings, ensuring every occasion is flawlessly executed.</p>
+            <div class="team-stats-row">
+                <div class="t-stat"><span>3+</span><small>Yrs Exp.</small></div>
+                <div class="t-stat"><span>100+</span><small>Events</small></div>
+            </div>
+            <div class="team-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="cta-overlay"></div>
+    <div class="cta-content">
+        <h2>Come Meet Us <span class="gold">In Person</span></h2>
+        <p>Our team is ready to give you an unforgettable evening.</p>
+        <a href="{% url 'reserve' %}" class="btn btn-gold btn-lg">Reserve Now</a>
+    </div>
+</section>
+{% endblock %}

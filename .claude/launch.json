@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "hookah69",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["manage.py", "runserver", "8080"],
+      "port": 8080
+    }
+  ]
+}

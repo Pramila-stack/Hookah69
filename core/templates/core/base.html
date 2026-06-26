@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Hookah69 Premium Bar — Kathmandu{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="{% url 'index' %}" class="nav-logo">
+            <span class="logo-icon">🌿</span>
+            <div class="logo-text">
+                <span class="logo-main">HOOKAH69</span>
+                <span class="logo-sub">PREMIUM BAR</span>
+            </div>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="{% url 'index' %}" class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}">Home</a></li>
+            <li><a href="{% url 'gallery' %}" class="nav-link {% if request.resolver_match.url_name == 'gallery' %}active{% endif %}">Gallery</a></li>
+            <li><a href="{% url 'menu' %}" class="nav-link {% if request.resolver_match.url_name == 'menu' %}active{% endif %}">Menu</a></li>
+            <li><a href="{% url 'team' %}" class="nav-link {% if request.resolver_match.url_name == 'team' %}active{% endif %}">Team</a></li>
+            <li><a href="{% url 'contact' %}" class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a></li>
+            <li><a href="{% url 'about' %}" class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}">About Us</a></li>
+        </ul>
+
+        <div class="nav-right">
+            <div class="social-icons">
+                <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <a href="{% url 'reserve' %}" class="btn btn-gold">Reserve Now</a>
+        </div>
+
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- ===== MESSAGES ===== -->
+{% if messages %}
+<div class="messages-container">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+        <button class="alert-close" onclick="this.parentElement.remove()">×</button>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- ===== PAGE CONTENT ===== -->
+{% block content %}{% endblock %}
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <a href="{% url 'index' %}" class="nav-logo footer-logo">
+                <span class="logo-icon">🌿</span>
+                <div class="logo-text">
+                    <span class="logo-main">HOOKAH69</span>
+                    <span class="logo-sub">PREMIUM BAR</span>
+                </div>
+            </a>
+            <p class="footer-tagline">Where flavors meet the mountains. Experience the finest hookah lounge in the heart of Kathmandu.</p>
+            <div class="footer-social">
+                <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="footer-heading">Quick Links</h4>
+            <ul class="footer-links">
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                <li><a href="{% url 'menu' %}">Menu</a></li>
+                <li><a href="{% url 'team' %}">Team</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                <li><a href="{% url 'reserve' %}">Reserve</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="footer-heading">Visit Us</h4>
+            <ul class="footer-info">
+                <li><i class="fas fa-map-marker-alt"></i> Greenland Chowk, Kathmandu, Nepal</li>
+                <li><i class="fas fa-phone"></i> +977 981-2345678</li>
+                <li><i class="fas fa-envelope"></i> gyaudan@gmail.com</li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="footer-heading">Opening Hours</h4>
+            <ul class="footer-info">
+                <li><i class="fas fa-clock"></i> Daily</li>
+                <li class="hours">4:00 PM — 2:00 AM</li>
+                <li class="footer-note">* Last order at 1:30 AM</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 Hookah69 Premium Bar. All rights reserved.</p>
+        <p>Designed by <span class="gold">Nexqbyte</span></p>
+    </div>
+</footer>
+
+<script src="{% static 'core/js/main.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Reserve a Table — Hookah69 Premium Bar{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+        <p class="section-eyebrow">Book Your Spot</p>
+        <h1>Reserve a <span class="gold">Table</span></h1>
+        <p>Secure your seat at Kathmandu's finest hookah lounge</p>
+    </div>
+</section>
+
+<section class="reserve-section">
+    <div class="reserve-container">
+        <div class="reserve-info">
+            <h2>Plan Your <span class="gold">Visit</span></h2>
+            <p>Experience an evening like no other. Fill out the form and our team will confirm your reservation shortly.</p>
+            <ul class="reserve-perks">
+                <li><i class="fas fa-check-circle"></i> Instant confirmation via email</li>
+                <li><i class="fas fa-check-circle"></i> VIP seating available on request</li>
+                <li><i class="fas fa-check-circle"></i> Special arrangements for celebrations</li>
+                <li><i class="fas fa-check-circle"></i> Complimentary welcome drink for groups 5+</li>
+            </ul>
+            <div class="reserve-hours">
+                <i class="fas fa-clock gold"></i>
+                <div>
+                    <strong>Opening Hours</strong>
+                    <span>Daily: 4:00 PM – 2:00 AM</span>
+                </div>
+            </div>
+            <div class="reserve-hours">
+                <i class="fas fa-phone gold"></i>
+                <div>
+                    <strong>Call Us</strong>
+                    <span>+977 981-2345678</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="reserve-form-wrap">
+            <h3>Reservation Details</h3>
+            <form method="post" class="reserve-form" novalidate>
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="id_name">Full Name *</label>
+                        {{ form.name }}
+                        {% if form.name.errors %}<span class="field-error">{{ form.name.errors.0 }}</span>{% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_email">Email Address *</label>
+                        {{ form.email }}
+                        {% if form.email.errors %}<span class="field-error">{{ form.email.errors.0 }}</span>{% endif %}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="id_phone">Phone Number *</label>
+                        {{ form.phone }}
+                        {% if form.phone.errors %}<span class="field-error">{{ form.phone.errors.0 }}</span>{% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_guests">Number of Guests *</label>
+                        {{ form.guests }}
+                        {% if form.guests.errors %}<span class="field-error">{{ form.guests.errors.0 }}</span>{% endif %}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="id_date">Preferred Date *</label>
+                        {{ form.date }}
+                        {% if form.date.errors %}<span class="field-error">{{ form.date.errors.0 }}</span>{% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_time">Preferred Time *</label>
+                        {{ form.time }}
+                        {% if form.time.errors %}<span class="field-error">{{ form.time.errors.0 }}</span>{% endif %}
+                    </div>
+                </div>
+                <div class="form-group full-width">
+                    <label for="id_special_requests">Special Requests</label>
+                    {{ form.special_requests }}
+                </div>
+                <button type="submit" class="btn btn-gold btn-block">Confirm Reservation</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

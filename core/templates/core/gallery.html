@@ -1,0 +1,93 @@
+{% extends 'core/base.html' %}
+{% block title %}Gallery — Hookah69 Premium Bar{% endblock %}
+{% block content %}
+<section class="page-hero">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+        <p class="section-eyebrow">Visual Tour</p>
+        <h1>Our <span class="gold">Gallery</span></h1>
+        <p>A glimpse into the Hookah69 experience</p>
+    </div>
+</section>
+
+<section class="gallery-section">
+    <div class="section-header">
+        <h2>Ambience & <span class="gold">Atmosphere</span></h2>
+        <p>Step inside — every corner tells a story of luxury and warmth.</p>
+    </div>
+
+    <div class="gallery-filter">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="lounge">Lounge</button>
+        <button class="filter-btn" data-filter="hookah">Hookah</button>
+        <button class="filter-btn" data-filter="drinks">Drinks</button>
+        <button class="filter-btn" data-filter="events">Events</button>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+        <div class="gallery-item" data-category="lounge">
+            <div class="gallery-placeholder lounge-1">
+                <i class="fas fa-couch"></i>
+                <span>Premium Lounge Area</span>
+            </div>
+        </div>
+        <div class="gallery-item large" data-category="hookah">
+            <div class="gallery-placeholder hookah-1">
+                <i class="fas fa-fire"></i>
+                <span>Signature Hookah Setup</span>
+            </div>
+        </div>
+        <div class="gallery-item" data-category="drinks">
+            <div class="gallery-placeholder drinks-1">
+                <i class="fas fa-cocktail"></i>
+                <span>Cocktail Crafting</span>
+            </div>
+        </div>
+        <div class="gallery-item" data-category="lounge">
+            <div class="gallery-placeholder lounge-2">
+                <i class="fas fa-lightbulb"></i>
+                <span>Ambient Lighting</span>
+            </div>
+        </div>
+        <div class="gallery-item" data-category="events">
+            <div class="gallery-placeholder events-1">
+                <i class="fas fa-music"></i>
+                <span>Live Music Night</span>
+            </div>
+        </div>
+        <div class="gallery-item large" data-category="lounge">
+            <div class="gallery-placeholder lounge-3">
+                <i class="fas fa-crown"></i>
+                <span>VIP Private Lounge</span>
+            </div>
+        </div>
+        <div class="gallery-item" data-category="hookah">
+            <div class="gallery-placeholder hookah-2">
+                <i class="fas fa-leaf"></i>
+                <span>Fruit-Based Flavors</span>
+            </div>
+        </div>
+        <div class="gallery-item" data-category="drinks">
+            <div class="gallery-placeholder drinks-2">
+                <i class="fas fa-wine-glass"></i>
+                <span>Premium Selection</span>
+            </div>
+        </div>
+        <div class="gallery-item" data-category="events">
+            <div class="gallery-placeholder events-2">
+                <i class="fas fa-birthday-cake"></i>
+                <span>Private Events</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="cta-overlay"></div>
+    <div class="cta-content">
+        <h2>Want to <span class="gold">Experience This?</span></h2>
+        <p>Reserve your table and create your own memories at Hookah69.</p>
+        <a href="{% url 'reserve' %}" class="btn btn-gold btn-lg">Reserve Now</a>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends 'core/base.html' %}
+{% block title %}Menu — Hookah69 Premium Bar{% endblock %}
+{% block content %}
+<section class="page-hero">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+        <p class="section-eyebrow">Our Offerings</p>
+        <h1>The <span class="gold">Menu</span></h1>
+        <p>Flavors crafted for the connoisseur</p>
+    </div>
+</section>
+
+<section class="menu-section">
+    <div class="menu-tabs">
+        <button class="tab-btn active" data-tab="hookah">🌿 Hookah</button>
+        <button class="tab-btn" data-tab="drinks">🍹 Drinks</button>
+        <button class="tab-btn" data-tab="food">🍽️ Food</button>
+    </div>
+
+    <!-- HOOKAH -->
+    <div class="tab-content active" id="hookah">
+        <div class="section-header">
+            <h2>Premium <span class="gold">Hookah Flavors</span></h2>
+            <p>50+ flavors using fresh fruits, ice bases, and premium tobacco blends</p>
+        </div>
+        {% if hookah_items %}
+        <div class="menu-grid">
+            {% for item in hookah_items %}
+            <div class="menu-card">
+                <div class="menu-card-icon">🌿</div>
+                <div class="menu-card-info">
+                    <h4>{{ item.name }}</h4>
+                    <p>{{ item.description }}</p>
+                </div>
+                <span class="menu-price">Rs. {{ item.price }}</span>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="menu-grid">
+            {% for item in hookah_defaults %}
+            <div class="menu-card">
+                <div class="menu-card-icon">🌿</div>
+                <div class="menu-card-info">
+                    <h4>{{ item.name }}</h4>
+                    <p>{{ item.desc }}</p>
+                </div>
+                <span class="menu-price">Rs. {{ item.price }}</span>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- DRINKS -->
+    <div class="tab-content" id="drinks">
+        <div class="section-header">
+            <h2>Signature <span class="gold">Cocktails & Drinks</span></h2>
+            <p>20+ premium drinks crafted by our master mixologists</p>
+        </div>
+        {% if drink_items %}
+        <div class="menu-grid">
+            {% for item in drink_items %}
+            <div class="menu-card">
+                <div class="menu-card-icon">🍹</div>
+                <div class="menu-card-info">
+                    <h4>{{ item.name }}</h4>
+                    <p>{{ item.description }}</p>
+                </div>
+                <span class="menu-price">Rs. {{ item.price }}</span>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="menu-grid">
+            <div class="menu-card"><div class="menu-card-icon">🍹</div><div class="menu-card-info"><h4>Hookah69 Signature</h4><p>House blend cocktail with local spirits and fresh herbs</p></div><span class="menu-price">Rs. 650</span></div>
+            <div class="menu-card"><div class="menu-card-icon">🍹</div><div class="menu-card-info"><h4>Mountain Mule</h4><p>Ginger beer, vodka, lime, and Himalayan mint</p></div><span class="menu-price">Rs. 550</span></div>
+            <div class="menu-card"><div class="menu-card-icon">🍹</div><div class="menu-card-info"><h4>Jungle Juice</h4><p>Tropical fruit punch with premium rum</p></div><span class="menu-price">Rs. 500</span></div>
+            <div class="menu-card"><div class="menu-card-icon">🍺</div><div class="menu-card-info"><h4>Premium Beers</h4><p>Selection of local and imported beers</p></div><span class="menu-price">Rs. 350</span></div>
+            <div class="menu-card"><div class="menu-card-icon">🥃</div><div class="menu-card-info"><h4>Whiskey Selection</h4><p>Single malt, blended Scotch, and bourbon options</p></div><span class="menu-price">Rs. 800</span></div>
+            <div class="menu-card"><div class="menu-card-icon">🥤</div><div class="menu-card-info"><h4>Mocktails</h4><p>Refreshing non-alcoholic blends for every palate</p></div><span class="menu-price">Rs. 350</span></div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- FOOD -->
+    <div class="tab-content" id="food">
+        <div class="section-header">
+            <h2>Gourmet <span class="gold">Small Plates</span></h2>
+            <p>Curated bites designed to pair perfectly with your hookah experience</p>
+        </div>
+        {% if food_items %}
+        <div class="menu-grid">
+            {% for item in food_items %}
+            <div class="menu-card">
+                <div class="menu-card-icon">🍽️</div>
+                <div class="menu-card-info">
+                    <h4>{{ item.name }}</h4>
+                    <p>{{ item.description }}</p>
+                </div>
+                <span class="menu-price">Rs. {{ item.price }}</span>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="menu-grid">
+            <div class="menu-card"><div class="menu-card-icon">🍽️</div><div class="menu-card-info"><h4>Mezze Platter</h4><p>Hummus, pita, olives, falafel, and seasonal dips</p></div><span class="menu-price">Rs. 750</span></div>
+            <div class="menu-card"><div class="menu-card-icon">🍽️</div><div class="menu-card-info"><h4>Crispy Calamari</h4><p>Golden fried squid with lemon aioli</p></div><span class="menu-price">Rs. 600</span></div>
+            <div class="menu-card"><div class="menu-card-icon">🍽️</div><div class="menu-card-info"><h4>Chicken Wings</h4><p>Glazed with our secret house sauce, served with ranch</p></div><span class="menu-price">Rs. 650</span></div>
+            <div class="menu-card"><div class="menu-card-icon">🍽️</div><div class="menu-card-info"><h4>Truffle Fries</h4><p>Crispy fries with truffle oil, parmesan, and herbs</p></div><span class="menu-price">Rs. 450</span></div>
+            <div class="menu-card"><div class="menu-card-icon">🍽️</div><div class="menu-card-info"><h4>Sliders Board</h4><p>Mini beef and chicken sliders with gourmet toppings</p></div><span class="menu-price">Rs. 850</span></div>
+            <div class="menu-card"><div class="menu-card-icon">🍽️</div><div class="menu-card-info"><h4>Bruschetta</h4><p>Toasted sourdough with fresh tomato, basil, and mozzarella</p></div><span class="menu-price">Rs. 400</span></div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="cta-overlay"></div>
+    <div class="cta-content">
+        <h2>Ready to <span class="gold">Indulge?</span></h2>
+        <p>Reserve your table and enjoy these flavors tonight.</p>
+        <a href="{% url 'reserve' %}" class="btn btn-gold btn-lg">Book Your Table</a>
+    </div>
+</section>
+{% endblock %}
