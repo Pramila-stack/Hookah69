@@ -311,20 +311,46 @@ def menu(request):
     })
 
 
-GALLERY_FALLBACK = [
-    {'title': 'Premium Lounge Area',        'image_url': 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80',  'category': 'lounge', 'is_large': False},
-    {'title': 'Signature Hookah Setup',     'image_url': 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=1200&q=80', 'category': 'hookah', 'is_large': True},
-    {'title': 'Cocktail Crafting',          'image_url': 'https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=800&q=80',  'category': 'drinks', 'is_large': False},
-    {'title': 'Ambient Lighting',           'image_url': 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80','category': 'lounge', 'is_large': False},
-    {'title': 'Live Music Night',           'image_url': 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=800&q=80', 'category': 'events', 'is_large': False},
-    {'title': 'VIP Private Lounge',         'image_url': 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80', 'category': 'lounge', 'is_large': True},
-    {'title': 'Fruit-Based Flavors',        'image_url': 'https://images.unsplash.com/photo-1551024739-78b0f8a875e7?w=800&q=80',  'category': 'hookah', 'is_large': False},
-    {'title': 'Premium Bar Selection',      'image_url': 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80','category': 'drinks', 'is_large': False},
-    {'title': 'Private Events',             'image_url': 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=800&q=80', 'category': 'events', 'is_large': False},
-]
+_GALLERY_CATEGORY_KEYWORDS = {
+    'lounge':  ['lounge', 'kounge', 'interior', 'vip', 'ambien', 'room', 'seat', 'sofa'],
+    'hookah':  ['hookah', 'shisha', 'smoke', 'pipe', 'coal'],
+    'drinks':  ['drink', 'cocktail', 'mocktail', 'juice', 'bar', 'glass', 'bottle', 'beer', 'wine'],
+    'events':  ['event', 'party', 'birthday', 'celebrat', 'live', 'music', 'night', 'dj'],
+    'food':    ['food', 'snack', 'pizza', 'momo', 'burger', 'pasta', 'plate', 'dish'],
+    'cafe':    ['cafe', 'coffee', 'tea', 'latte', 'frappe', 'matcha', 'espresso'],
+}
+_GALLERY_EXTS = {'.jpg', '.jpeg', '.png', '.webp'}
+
+
+def _gallery_category(filename):
+    name = filename.lower()
+    for cat, keywords in _GALLERY_CATEGORY_KEYWORDS.items():
+        if any(kw in name for kw in keywords):
+            return cat
+    return 'lounge'
+
+
+def _scan_gallery_folder():
+    """Auto-read every image in media/gallery/ — no DB, no admin needed."""
+    from pathlib import Path
+    from django.conf import settings as _s
+    folder = Path(_s.MEDIA_ROOT) / 'gallery'
+    if not folder.exists():
+        return []
+    images = []
+    for f in sorted(folder.iterdir()):
+        if f.is_file() and f.suffix.lower() in _GALLERY_EXTS:
+            images.append({
+                'title':     f.stem.replace('_', ' ').replace('-', ' ').title(),
+                'image_url': _s.MEDIA_URL + 'gallery/' + f.name,
+                'category':  _gallery_category(f.name),
+                'is_large':  f.name.lower().startswith('large_'),
+            })
+    return images
 
 
 def gallery(request):
+    # 1. DB images (added via admin) take priority
     db_images = GalleryImage.objects.filter(is_active=True)
     if db_images.exists():
         images = [
@@ -332,9 +358,15 @@ def gallery(request):
              'category': img.category, 'is_large': img.is_large}
             for img in db_images
         ]
-    else:
-        images = GALLERY_FALLBACK
-    return render(request, 'core/gallery.html', {'images': images})
+        return render(request, 'core/gallery.html', {'images': images})
+
+    # 2. Auto-scan media/gallery/ — just drop files in, they appear instantly
+    scanned = _scan_gallery_folder()
+    if scanned:
+        return render(request, 'core/gallery.html', {'images': scanned})
+
+    # 3. Nothing found — show empty state (no Unsplash placeholders)
+    return render(request, 'core/gallery.html', {'images': []})
 
 
 def team(request):

@@ -1,92 +1,549 @@
 {% extends 'core/base.html' %}
 {% load static %}
-
 {% block title %}Reserve a Table — Hookah69 Premium Bar{% endblock %}
 
 {% block content %}
-<section class="page-hero">
-    <div class="page-hero-overlay"></div>
-    <div class="page-hero-content">
+
+<section class="reserve-hero">
+    <div class="reserve-hero-overlay"></div>
+    <div class="reserve-hero-content">
         <p class="section-eyebrow">Book Your Spot</p>
         <h1>Reserve a <span class="gold">Table</span></h1>
         <p>Secure your seat at Kathmandu's finest hookah lounge</p>
     </div>
 </section>
 
-<section class="reserve-section">
-    <div class="reserve-container">
-        <div class="reserve-info">
-            <h2>Plan Your <span class="gold">Visit</span></h2>
-            <p>Experience an evening like no other. Fill out the form and our team will confirm your reservation shortly.</p>
-            <ul class="reserve-perks">
-                <li><i class="fas fa-check-circle"></i> Instant confirmation via email</li>
-                <li><i class="fas fa-check-circle"></i> VIP seating available on request</li>
-                <li><i class="fas fa-check-circle"></i> Special arrangements for celebrations</li>
-                <li><i class="fas fa-check-circle"></i> Complimentary welcome drink for groups 5+</li>
-            </ul>
-            <div class="reserve-hours">
-                <i class="fas fa-clock gold"></i>
-                <div>
-                    <strong>Opening Hours</strong>
-                    <span>Daily: 4:00 PM – 2:00 AM</span>
+<section class="rsv-section">
+    <div class="rsv-wrapper">
+
+        <!-- ===== LEFT — SPECIAL OCCASIONS ===== -->
+        <div class="rsv-left">
+            <div class="rsv-badge"><i class="fas fa-star"></i> Special Occasions <i class="fas fa-star"></i></div>
+            <h2 class="rsv-left-title">Celebrate With <span class="gold">Hookah69</span></h2>
+            <p class="rsv-left-sub">Customized packages for every special moment in your life</p>
+
+            <div class="pkg-card pkg-birthday">
+                <div class="pkg-header">
+                    <div class="pkg-icon">🎉</div>
+                    <div>
+                        <h4>Birthday Celebration</h4>
+                        <p>Make your birthday unforgettable with our special package</p>
+                    </div>
                 </div>
+                <div class="pkg-includes-label">PACKAGE INCLUDES</div>
+                <div class="pkg-tags">
+                    <span>Premium hookah (2 flavors)</span>
+                    <span>Birthday cake (1 lb)</span>
+                    <span>Decorations (balloons &amp; banner)</span>
+                    <span>Welcome drinks for 4 people</span>
+                </div>
+                <button class="btn-pkg" onclick="selectPackage('Birthday Celebration')">Book This Package</button>
             </div>
-            <div class="reserve-hours">
-                <i class="fas fa-phone gold"></i>
-                <div>
-                    <strong>Call Us</strong>
-                    <span>+977 981-2345678</span>
+
+            <div class="pkg-card pkg-anniversary">
+                <div class="pkg-header">
+                    <div class="pkg-icon">❤️</div>
+                    <div>
+                        <h4>Anniversary Special</h4>
+                        <p>Celebrate your love story with our romantic anniversary package</p>
+                    </div>
+                </div>
+                <div class="pkg-includes-label">PACKAGE INCLUDES</div>
+                <div class="pkg-tags">
+                    <span>Premium hookah (2 flavors)</span>
+                    <span>Chocolate bouquet</span>
+                    <span>Rose petal decoration</span>
+                    <span>Candle light setup</span>
+                </div>
+                <button class="btn-pkg" onclick="selectPackage('Anniversary')">Book This Package</button>
+            </div>
+
+            <div class="rsv-direct">
+                <p>Or book directly via</p>
+                <div class="rsv-direct-btns">
+                    <a href="tel:+9779702027432" class="btn-direct btn-call"><i class="fas fa-phone"></i> Call Now</a>
+                    <a href="https://wa.me/9779702027432" target="_blank" rel="noopener noreferrer" class="btn-direct btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
                 </div>
             </div>
         </div>
 
-        <div class="reserve-form-wrap">
-            <h3>Reservation Details</h3>
-            <form method="post" class="reserve-form" novalidate>
-                {% csrf_token %}
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="id_name">Full Name *</label>
-                        {{ form.name }}
-                        {% if form.name.errors %}<span class="field-error">{{ form.name.errors.0 }}</span>{% endif %}
+        <!-- ===== RIGHT — BOOKING FORM ===== -->
+        <div class="rsv-right">
+            <div class="rsv-form-card">
+                <div class="rsv-form-header">
+                    <h3>Reserve Your Table</h3>
+                    <p>Fill in the details and we'll send your booking via WhatsApp</p>
+                </div>
+
+                <!-- Table Selector -->
+                <div class="rsv-field-group">
+                    <label class="rsv-label"><i class="fas fa-chair"></i> Select Table Number *</label>
+                    <div class="table-grid" id="tableGrid">
+                        <button type="button" class="tbl-btn" data-table="T1" onclick="selectTable(this)">T1</button>
+                        <button type="button" class="tbl-btn" data-table="T2" onclick="selectTable(this)">T2</button>
+                        <button type="button" class="tbl-btn" data-table="T3" onclick="selectTable(this)">T3</button>
+                        <button type="button" class="tbl-btn" data-table="T4" onclick="selectTable(this)">T4</button>
+                        <button type="button" class="tbl-btn" data-table="VIP1" onclick="selectTable(this)">VIP1</button>
+                        <button type="button" class="tbl-btn" data-table="VIP2" onclick="selectTable(this)">VIP2</button>
+                        <button type="button" class="tbl-btn" data-table="VIP3" onclick="selectTable(this)">VIP3</button>
+                        <button type="button" class="tbl-btn" data-table="OUT1" onclick="selectTable(this)">OUT1</button>
+                        <button type="button" class="tbl-btn" data-table="OUT2" onclick="selectTable(this)">OUT2</button>
                     </div>
-                    <div class="form-group">
-                        <label for="id_email">Email Address *</label>
-                        {{ form.email }}
-                        {% if form.email.errors %}<span class="field-error">{{ form.email.errors.0 }}</span>{% endif %}
+                    <input type="hidden" id="selectedTable" value="" />
+                </div>
+
+                <!-- Event Type -->
+                <div class="rsv-field-group">
+                    <label class="rsv-label"><i class="fas fa-calendar-star"></i> Event Type</label>
+                    <div class="event-grid" id="eventGrid">
+                        <button type="button" class="evt-btn active" data-event="Casual Hangout" onclick="selectEvent(this)"><i class="fas fa-glass-cheers"></i> Casual Hangout</button>
+                        <button type="button" class="evt-btn" data-event="Birthday Celebration" onclick="selectEvent(this)"><i class="fas fa-birthday-cake"></i> Birthday Celebration</button>
+                        <button type="button" class="evt-btn" data-event="Anniversary" onclick="selectEvent(this)"><i class="fas fa-heart"></i> Anniversary</button>
+                        <button type="button" class="evt-btn" data-event="Business Meeting" onclick="selectEvent(this)"><i class="fas fa-briefcase"></i> Business Meeting</button>
+                        <button type="button" class="evt-btn" data-event="Private Party" onclick="selectEvent(this)"><i class="fas fa-music"></i> Private Party</button>
+                        <button type="button" class="evt-btn" data-event="Live Music Night" onclick="selectEvent(this)"><i class="fas fa-guitar"></i> Live Music Night</button>
+                    </div>
+                    <input type="hidden" id="selectedEvent" value="Casual Hangout" />
+                </div>
+
+                <!-- Name -->
+                <div class="rsv-field-group">
+                    <label class="rsv-label" for="rsv_name"><i class="fas fa-user"></i> Full Name *</label>
+                    <input type="text" id="rsv_name" class="rsv-input" placeholder="John Doe" required />
+                </div>
+
+                <!-- Email -->
+                <div class="rsv-field-group">
+                    <label class="rsv-label" for="rsv_email"><i class="fas fa-envelope"></i> Email Address *</label>
+                    <input type="email" id="rsv_email" class="rsv-input" placeholder="john@example.com" required />
+                </div>
+
+                <!-- Phone -->
+                <div class="rsv-field-group">
+                    <label class="rsv-label" for="rsv_phone"><i class="fas fa-phone"></i> Phone Number *</label>
+                    <input type="tel" id="rsv_phone" class="rsv-input" placeholder="+977 981-2345678" required />
+                </div>
+
+                <!-- Date & Time -->
+                <div class="rsv-row">
+                    <div class="rsv-field-group">
+                        <label class="rsv-label" for="rsv_date"><i class="fas fa-calendar"></i> Date *</label>
+                        <input type="date" id="rsv_date" class="rsv-input" required />
+                    </div>
+                    <div class="rsv-field-group">
+                        <label class="rsv-label" for="rsv_time"><i class="fas fa-clock"></i> Time *</label>
+                        <input type="time" id="rsv_time" class="rsv-input" min="09:00" max="22:00" required />
+                        <span class="rsv-hint">Open: 10:00 AM - 22:00 PM</span>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="id_phone">Phone Number *</label>
-                        {{ form.phone }}
-                        {% if form.phone.errors %}<span class="field-error">{{ form.phone.errors.0 }}</span>{% endif %}
-                    </div>
-                    <div class="form-group">
-                        <label for="id_guests">Number of Guests *</label>
-                        {{ form.guests }}
-                        {% if form.guests.errors %}<span class="field-error">{{ form.guests.errors.0 }}</span>{% endif %}
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="id_date">Preferred Date *</label>
-                        {{ form.date }}
-                        {% if form.date.errors %}<span class="field-error">{{ form.date.errors.0 }}</span>{% endif %}
-                    </div>
-                    <div class="form-group">
-                        <label for="id_time">Preferred Time *</label>
-                        {{ form.time }}
-                        {% if form.time.errors %}<span class="field-error">{{ form.time.errors.0 }}</span>{% endif %}
+
+                <!-- Guests -->
+                <div class="rsv-field-group">
+                    <label class="rsv-label" for="rsv_guests"><i class="fas fa-users"></i> Number of Guests *</label>
+                    <div class="rsv-select-wrap">
+                        <select id="rsv_guests" class="rsv-input rsv-select">
+                            <option value="1">1 Guest</option>
+                            <option value="2" selected>2 Guests</option>
+                            <option value="3">3 Guests</option>
+                            <option value="4">4 Guests</option>
+                            <option value="5">5 Guests</option>
+                            <option value="6">6 Guests</option>
+                            <option value="7">7 Guests</option>
+                            <option value="8">8 Guests</option>
+                            <option value="9">9 Guests</option>
+                            <option value="10">10 Guests</option>
+                            <option value="10+">10+ Guests</option>
+                        </select>
+                        <i class="fas fa-chevron-down rsv-select-arrow"></i>
                     </div>
                 </div>
-                <div class="form-group full-width">
-                    <label for="id_special_requests">Special Requests</label>
-                    {{ form.special_requests }}
+
+                <!-- Special Request -->
+                <div class="rsv-field-group">
+                    <label class="rsv-label" for="rsv_special"><i class="fas fa-comment-dots"></i> Special Request <span class="rsv-optional">(Optional)</span></label>
+                    <textarea id="rsv_special" class="rsv-input" rows="3" placeholder="Any special requirements? (Allergies, decorations, cake, etc.)"></textarea>
                 </div>
-                <button type="submit" class="btn btn-gold btn-block">Confirm Reservation</button>
-            </form>
+
+                <!-- Submit -->
+                <button type="button" class="btn-wa-confirm" onclick="confirmViaWhatsApp()">
+                    <i class="fab fa-whatsapp"></i> Confirm via WhatsApp
+                </button>
+                <p class="rsv-status"><span class="status-dot"></span> Tables available for booking</p>
+            </div>
         </div>
+
     </div>
 </section>
+
+<style>
+/* ===== HERO ===== */
+.reserve-hero {
+    position: relative;
+    height: 300px;
+    background: linear-gradient(135deg, #0d0d0d 0%, #1a1200 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+.reserve-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(201,168,76,0.12) 0%, transparent 70%);
+}
+.reserve-hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.45); }
+.reserve-hero-content { position: relative; z-index: 2; padding: 0 24px; }
+.reserve-hero-content h1 { font-size: clamp(2rem, 5vw, 3.2rem); margin: 8px 0; }
+.reserve-hero-content p { color: #aaa; font-size: 1rem; margin-top: 8px; }
+
+/* ===== SECTION ===== */
+.rsv-section { background: #0a0a0a; padding: 60px 24px 80px; }
+.rsv-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+/* ===== LEFT PANEL ===== */
+.rsv-left { padding-top: 8px; }
+.rsv-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold, #c9a84c);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 7px 16px;
+    border-radius: 999px;
+    margin-bottom: 20px;
+}
+.rsv-left-title { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 10px; line-height: 1.25; }
+.rsv-left-sub { color: #888; font-size: 0.95rem; margin-bottom: 32px; line-height: 1.6; }
+
+/* Package cards */
+.pkg-card {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 20px;
+    transition: border-color 0.25s;
+}
+.pkg-card:hover { border-color: #333; }
+.pkg-birthday { border-left: 3px solid #e84393; }
+.pkg-anniversary { border-left: 3px solid #ff6b6b; }
+.pkg-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+.pkg-icon { font-size: 1.8rem; line-height: 1; flex-shrink: 0; }
+.pkg-header h4 { color: #fff; font-size: 1rem; font-weight: 700; margin: 0 0 4px; }
+.pkg-header p { color: #777; font-size: 0.82rem; margin: 0; line-height: 1.5; }
+.pkg-includes-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #555;
+    margin-bottom: 10px;
+}
+.pkg-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.pkg-tags span {
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    color: #bbb;
+    font-size: 0.75rem;
+    padding: 5px 12px;
+    border-radius: 999px;
+}
+.btn-pkg {
+    background: transparent;
+    border: 1px solid #333;
+    color: #ccc;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: inherit;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.btn-pkg:hover {
+    background: rgba(201,168,76,0.1);
+    border-color: var(--gold, #c9a84c);
+    color: var(--gold, #c9a84c);
+}
+
+/* Direct booking */
+.rsv-direct { margin-top: 28px; }
+.rsv-direct > p { color: #555; font-size: 0.85rem; text-align: center; margin-bottom: 14px; }
+.rsv-direct-btns { display: flex; gap: 12px; }
+.btn-direct {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.15s;
+}
+.btn-direct:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-call { background: #1a3a1a; color: #5dbd5d; border: 1px solid #2d5a2d; }
+.btn-wa   { background: #1a2e1a; color: #25d366; border: 1px solid #25d36640; }
+
+/* ===== RIGHT PANEL ===== */
+.rsv-form-card {
+    background: #111;
+    border: 1px solid #1e1e1e;
+    border-radius: 16px;
+    padding: 32px;
+}
+.rsv-form-header { margin-bottom: 28px; }
+.rsv-form-header h3 {
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 6px;
+    border-left: 3px solid var(--gold, #c9a84c);
+    padding-left: 12px;
+}
+.rsv-form-header p { color: #666; font-size: 0.82rem; margin: 0; padding-left: 15px; }
+
+.rsv-field-group { margin-bottom: 18px; }
+.rsv-label {
+    display: block;
+    color: #aaa;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: 0.03em;
+}
+.rsv-label i { color: var(--gold, #c9a84c); margin-right: 6px; font-size: 0.75rem; }
+.rsv-optional { color: #555; font-weight: 400; }
+.rsv-input {
+    width: 100%;
+    background: #0d0d0d;
+    border: 1px solid #2a2a2a;
+    color: #e0e0e0;
+    font-family: inherit;
+    font-size: 0.9rem;
+    padding: 11px 14px;
+    border-radius: 8px;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+.rsv-input:focus { border-color: var(--gold, #c9a84c); }
+.rsv-input::placeholder { color: #444; }
+textarea.rsv-input { resize: vertical; min-height: 80px; }
+.rsv-hint { color: #555; font-size: 0.75rem; margin-top: 5px; display: block; }
+
+.rsv-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.rsv-select-wrap { position: relative; }
+.rsv-select { appearance: none; -webkit-appearance: none; cursor: pointer; padding-right: 36px; }
+.rsv-select-arrow {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #555;
+    font-size: 0.75rem;
+    pointer-events: none;
+}
+
+/* Table grid */
+.table-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+.tbl-btn {
+    background: #0d0d0d;
+    border: 1px solid #2a2a2a;
+    color: #aaa;
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-family: inherit;
+    padding: 10px 6px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+    text-align: center;
+}
+.tbl-btn:hover { border-color: #444; color: #ccc; }
+.tbl-btn.selected {
+    background: var(--gold, #c9a84c);
+    border-color: var(--gold, #c9a84c);
+    color: #000;
+}
+
+/* Event grid */
+.event-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+.evt-btn {
+    background: #0d0d0d;
+    border: 1px solid #2a2a2a;
+    color: #aaa;
+    font-size: 0.78rem;
+    font-weight: 500;
+    font-family: inherit;
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.evt-btn i { font-size: 0.78rem; flex-shrink: 0; }
+.evt-btn:hover { border-color: #444; color: #ccc; }
+.evt-btn.active {
+    background: var(--gold, #c9a84c);
+    border-color: var(--gold, #c9a84c);
+    color: #000;
+    font-weight: 700;
+}
+
+/* WhatsApp confirm button */
+.btn-wa-confirm {
+    width: 100%;
+    background: #25d366;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: inherit;
+    padding: 15px 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 6px;
+    transition: background 0.2s, transform 0.15s;
+}
+.btn-wa-confirm i { font-size: 1.1rem; }
+.btn-wa-confirm:hover { background: #1ebe5c; transform: translateY(-1px); }
+
+/* Status dot */
+.rsv-status {
+    text-align: center;
+    color: #555;
+    font-size: 0.75rem;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+.status-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: #25d366;
+    border-radius: 50%;
+    animation: pulse-dot 1.8s infinite;
+}
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+    .rsv-wrapper { grid-template-columns: 1fr; }
+    .rsv-left { order: 2; }
+    .rsv-right { order: 1; }
+}
+@media (max-width: 480px) {
+    .rsv-form-card { padding: 22px 16px; }
+    .rsv-row { grid-template-columns: 1fr; }
+    .table-grid { grid-template-columns: repeat(3, 1fr); }
+    .event-grid { grid-template-columns: 1fr; }
+    .rsv-direct-btns { flex-direction: column; }
+    .reserve-hero { height: 220px; }
+}
+</style>
+
+<script>
+function selectTable(btn) {
+    document.querySelectorAll('.tbl-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    document.getElementById('selectedTable').value = btn.dataset.table;
+}
+
+function selectEvent(btn) {
+    document.querySelectorAll('.evt-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('selectedEvent').value = btn.dataset.event;
+}
+
+function selectPackage(eventType) {
+    document.querySelectorAll('.evt-btn').forEach(b => {
+        if (b.dataset.event === eventType) {
+            b.classList.add('active');
+        } else {
+            b.classList.remove('active');
+        }
+    });
+    document.getElementById('selectedEvent').value = eventType;
+    document.querySelector('.rsv-right').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function confirmViaWhatsApp() {
+    var table   = document.getElementById('selectedTable').value;
+    var event   = document.getElementById('selectedEvent').value;
+    var name    = document.getElementById('rsv_name').value.trim();
+    var email   = document.getElementById('rsv_email').value.trim();
+    var phone   = document.getElementById('rsv_phone').value.trim();
+    var date    = document.getElementById('rsv_date').value;
+    var time    = document.getElementById('rsv_time').value;
+    var guests  = document.getElementById('rsv_guests').value;
+    var special = document.getElementById('rsv_special').value.trim();
+
+    if (!name || !phone || !date || !time) {
+        alert('Please fill in Full Name, Phone Number, Date and Time before confirming.');
+        return;
+    }
+    if (!table) {
+        alert('Please select a table number.');
+        return;
+    }
+
+    var msg = '🪔 *Hookah69 Reservation Request*\n\n'
+            + '📋 *Table:* ' + table + '\n'
+            + '🎉 *Event:* ' + event + '\n'
+            + '👤 *Name:* ' + name + '\n'
+            + (email ? '📧 *Email:* ' + email + '\n' : '')
+            + '📞 *Phone:* ' + phone + '\n'
+            + '📅 *Date:* ' + date + '\n'
+            + '🕐 *Time:* ' + time + '\n'
+            + '👥 *Guests:* ' + guests + '\n'
+            + (special ? '📝 *Special Requests:* ' + special + '\n' : '')
+            + '\nThank you! Please confirm my booking.';
+
+    var url = 'https://wa.me/9779702027432?text=' + encodeURIComponent(msg);
+    window.open(url, '_blank', 'noopener,noreferrer');
+}
+</script>
+
 {% endblock %}

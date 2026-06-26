@@ -28,7 +28,7 @@
                 <div class="info-icon"><i class="fas fa-phone"></i></div>
                 <div>
                     <h4>Phone</h4>
-                    <p><a href="tel:+9779812345678">+977 981-2345678</a></p>
+                    <p><a href="tel:+9779812345678">+977 970-2027432</a></p>
                 </div>
             </div>
             <div class="info-card">
@@ -42,7 +42,7 @@
                 <div class="info-icon"><i class="fas fa-clock"></i></div>
                 <div>
                     <h4>Opening Hours</h4>
-                    <p>Daily: 4:00 PM – 2:00 AM</p>
+                    <p>Daily: 9:00 AM – 10:00 PM</p>
                 </div>
             </div>
 
@@ -82,10 +82,317 @@
 
     </div>
 
-    <div class="map-placeholder">
-        <i class="fas fa-map-marker-alt"></i>
-        <p>Greenland Chowk, Kathmandu, Nepal</p>
-        <small>Map integration available with Google Maps API key</small>
+    <!-- ===== GOOGLE MAP ===== -->
+    <div class="map-section">
+        <div class="map-section-header">
+            <p class="section-eyebrow">Our Location</p>
+            <h2>Find Us <span class="gold">Here</span></h2>
+            <p class="map-subtitle">We're located at Greenland Chowk, right in the heart of Kathmandu. Easy to find, impossible to forget.</p>
+        </div>
+        <div class="map-wrapper">
+            <iframe
+                title="Hookah69 Location — Greenland Chowk, Kathmandu"
+                src="https://maps.google.com/maps?q=Greenland+Chowk,Kathmandu,Nepal&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="450"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+            <div class="map-overlay-card">
+                <div class="map-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="map-card-info">
+                    <strong>Hookah69 Premium Bar</strong>
+                    <span>Greenland Chowk, Kathmandu, Nepal</span>
+                    <a href="https://www.google.com/maps/search/Greenland+Chowk,+Kathmandu,+Nepal" target="_blank" rel="noopener noreferrer" class="get-directions-link">
+                        <i class="fas fa-directions"></i> Get Directions
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- ===== FAQ SECTION ===== -->
+<section class="faq-section">
+    <div class="faq-container">
+        <div class="faq-header">
+            <p class="section-eyebrow">Support</p>
+            <h2>Frequently Asked <span class="gold">Questions</span></h2>
+            <p class="faq-subtitle">Everything you need to know before your visit. Can't find your answer? <a href="mailto:gyaudan@gmail.com" class="gold">Drop us a message.</a></p>
+        </div>
+
+        <div class="faq-list">
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    <span>Do I need a reservation to visit?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Walk-ins are welcome, but we strongly recommend making a reservation, especially on weekends and public holidays. Tables fill up fast during peak hours (6 PM – 10 PM). You can reserve directly from our <a href="{% url 'reserve' %}" class="gold">Reserve page</a>.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    <span>What is the minimum age to enter Hookah69?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Hookah69 is strictly for guests aged 18 and above. Valid government-issued ID is required at entry. We enforce this policy without exception to ensure a safe and responsible environment for all guests.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    <span>What hookah flavors do you offer?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>We offer a rotating selection of 30+ premium flavors — from classic Double Apple and Grape Mint to signature blends crafted in-house. Our staff can also help mix custom flavors on request. Visit our <a href="{% url 'menu' %}" class="gold">Menu page</a> for the full list.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    <span>Do you serve food and non-alcoholic beverages?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes! We serve a curated menu of snacks, light bites, and a full range of mocktails, fresh juices, soft drinks, and premium teas. Our kitchen closes at 9:20 PM, so plan accordingly. Check our <a href="{% url 'menu' %}" class="gold">Menu</a> for details.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    <span>Can I host a private event or birthday celebration?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Absolutely! We love hosting birthdays, anniversaries, corporate gatherings, and private parties. We offer custom packages with dedicated seating, personalized décor, and special hookah setups. Contact us at <a href="mailto:gyaudan@gmail.com" class="gold">gyaudan@gmail.com</a> or call <a href="tel:+9779702027432" class="gold">+977 970-2027432</a> to plan your event.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    <span>What are your opening hours?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>We are open daily from <strong>9:00 AM to 10:00 PM</strong>. Last orders for hookah are accepted at 9:30 PM. During festivals and public holidays, hours may vary — follow us on social media for real-time updates.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    <span>Is parking available near Hookah69?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes, there is street parking available at Greenland Chowk. We recommend arriving by taxi or ride-share services such as Pathao or InDrive during peak evening hours when parking space can be limited.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    <span>How do I cancel or modify my reservation?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>To cancel or change your booking, please contact us at least 2 hours before your scheduled time. You can reach us by phone at <a href="tel:+9779702027432" class="gold">+977 970-2027432</a> or by email at <a href="mailto:gyaudan@gmail.com" class="gold">gyaudan@gmail.com</a>. No-shows without notice may affect future reservation priority.</p>
+                </div>
+            </div>
+
+        </div>
     </div>
 </section>
+
+<style>
+/* ===== MAP SECTION ===== */
+.map-section {
+    background: #0a0a0a;
+    padding: 80px 0 0;
+}
+.map-section-header {
+    text-align: center;
+    padding: 0 24px 48px;
+    max-width: 640px;
+    margin: 0 auto;
+}
+.map-subtitle {
+    color: #aaa;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-top: 12px;
+}
+.map-wrapper {
+    position: relative;
+    width: 100%;
+    line-height: 0;
+}
+.map-wrapper iframe {
+    display: block;
+    width: 100%;
+    height: 450px;
+    filter: grayscale(30%) contrast(1.05);
+}
+.map-overlay-card {
+    position: absolute;
+    bottom: 24px;
+    left: 40px;
+    background: #111;
+    border: 1px solid #2a2a2a;
+    border-left: 3px solid var(--gold, #c9a84c);
+    border-radius: 10px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    max-width: 320px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    z-index: 10;
+}
+.map-card-icon {
+    color: var(--gold, #c9a84c);
+    font-size: 1.4rem;
+    padding-top: 2px;
+    flex-shrink: 0;
+}
+.map-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.map-card-info strong {
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+.map-card-info span {
+    color: #aaa;
+    font-size: 0.85rem;
+}
+.get-directions-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--gold, #c9a84c);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 6px;
+    transition: opacity 0.2s;
+}
+.get-directions-link:hover { opacity: 0.75; }
+
+/* ===== FAQ SECTION ===== */
+.faq-section {
+    background: #0d0d0d;
+    padding: 90px 24px;
+}
+.faq-container {
+    max-width: 820px;
+    margin: 0 auto;
+}
+.faq-header {
+    text-align: center;
+    margin-bottom: 56px;
+}
+.faq-subtitle {
+    color: #aaa;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-top: 12px;
+}
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.faq-item {
+    background: #111;
+    border: 1px solid #1e1e1e;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.25s;
+}
+.faq-item.open {
+    border-color: var(--gold, #c9a84c);
+}
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 22px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    cursor: pointer;
+    text-align: left;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    transition: color 0.2s;
+}
+.faq-question:hover { color: var(--gold, #c9a84c); }
+.faq-item.open .faq-question { color: var(--gold, #c9a84c); }
+.faq-icon {
+    flex-shrink: 0;
+    font-size: 0.85rem;
+    color: var(--gold, #c9a84c);
+    transition: transform 0.3s ease;
+}
+.faq-item.open .faq-icon { transform: rotate(180deg); }
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.3s ease;
+    padding: 0 24px;
+}
+.faq-item.open .faq-answer {
+    max-height: 300px;
+    padding: 0 24px 22px;
+}
+.faq-answer p {
+    color: #aaa;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    margin: 0;
+}
+.faq-answer a.gold {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+    .map-overlay-card { left: 16px; right: 16px; max-width: unset; bottom: 16px; }
+    .map-wrapper iframe { height: 320px; }
+    .faq-section { padding: 60px 16px; }
+    .map-section { padding: 60px 0 0; }
+}
+</style>
+
+<script>
+(function () {
+    document.querySelectorAll('.faq-question').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var item = this.closest('.faq-item');
+            var isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item.open').forEach(function (el) {
+                el.classList.remove('open');
+                el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+            });
+            if (!isOpen) {
+                item.classList.add('open');
+                this.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+})();
+</script>
 {% endblock %}
